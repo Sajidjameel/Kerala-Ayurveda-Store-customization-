@@ -1,0 +1,359 @@
+{{inject 'outOfStockDefaultMessage' (lang 'products.out_of_stock_default_message')}}
+
+
+
+
+<div class="container product-view-container">
+    <div class="productView" data-event-type="product" data-entity-id="{{product.id}}" data-name="{{product.title}}"
+        data-product-category="
+        {{#each product.category}}
+            {{#if @last}}{{this}}{{else}}{{this}}, {{/if}}
+        {{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="
+        {{#or customer (unless settings.hide_price_from_guests)}}
+            {{#if product.price.with_tax}}
+                {{product.price.with_tax.value}}
+            {{else}}
+                {{product.price.without_tax.value}}
+            {{/if}}
+        {{else}}
+            {{lang 'common.login_for_pricing'}}
+        {{/or}}" data-product-variant="single-product-option">
+
+        {{#each product.reviews.messages}}
+        {{#if error}}
+        {{> components/common/alert/alert-error error}}
+        {{/if}}
+        {{#if success}}
+        {{> components/common/alert/alert-success success}}
+        {{/if}}
+        {{/each}}
+        
+        <section class="productView-images" data-image-gallery>
+            {{#if product.images.length '>' 1 }}
+          
+        <div class="productView-img-container slick-show-this">
+            {{#each product.images}}
+            <div class="productView">
+                                 
+                                    {{> components/common/responsive-img
+                                    image=this
+                                    fallback_size=../theme_settings.productview_thumb_size
+                                    lazyload=../theme_settings.lazyload_mode
+                                    }}
+                               
+                                </div>
+                            {{/each}}
+                </div>
+    <div class="progress-slide-btn-wrap">
+    <div class="btn-wrap">
+    <button class="prev-btn"><svg xmlns="http://www.w3.org/2000/svg" width="38" height="16" viewBox="0 0 38 16" fill="none">
+        <path id="Arrow 2" d="M0.646408 7.21282C0.255886 7.60334 0.255886 8.2365 0.646408 8.62703L7.01037 14.991C7.40089 15.3815 8.03406 15.3815 8.42458 14.991C8.81511 14.6005 8.81511 13.9673 8.42458 13.5768L2.76773 7.91992L8.42458 2.26307C8.81511 1.87254 8.81511 1.23938 8.42458 0.848854C8.03406 0.45833 7.40089 0.45833 7.01037 0.848854L0.646408 7.21282ZM37.6484 6.91992L1.35352 6.91992V8.91992L37.6484 8.91992V6.91992Z" fill="#BCC7D6"/>
+            </svg></button>
+  <button class="next-btn active">
+  
+    
+    <svg width="116" height="20" viewBox="0 0 116 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="116" height="39" fill="#F5F5F5"/>
+    <g id="Shop Product, about, PODCAST, CART">
+    <path d="M-10212 -1378C-10212 -1379.1 -10211.1 -1380 -10210 -1380H26561C26562.1 -1380 26563 -1379.1 26563 -1378V9870C26563 9871.1 26562.1 9872 26561 9872H-10210C-10211.1 9872 -10212 9871.1 -10212 9870V-1378Z" fill="#FCF3E2" fill-opacity="0.02"/>
+    <path d="M-10210 -1379H26561V-1381H-10210V-1379ZM26562 -1378V9870H26564V-1378H26562ZM26561 9871H-10210V9873H26561V9871ZM-10211 9870V-1378H-10213V9870H-10211ZM-10210 9871C-10210.6 9871 -10211 9870.55 -10211 9870H-10213C-10213 9871.66 -10211.7 9873 -10210 9873V9871ZM26562 9870C26562 9870.55 26561.6 9871 26561 9871V9873C26562.7 9873 26564 9871.66 26564 9870H26562ZM26561 -1379C26561.6 -1379 26562 -1378.55 26562 -1378H26564C26564 -1379.66 26562.7 -1381 26561 -1381V-1379ZM-10210 -1381C-10211.7 -1381 -10213 -1379.66 -10213 -1378H-10211C-10211 -1378.55 -10210.6 -1379 -10210 -1379V-1381Z" fill="#051427"/>
+    <g id="Product" clip-path="url(#clip0_102_45)">
+    <rect width="1920" height="7723" transform="translate(-1677 -896)" fill="white"/>
+    <g id="Group 1686551680">
+    <g id="Component 141">
+    <g id="Group 1686551688">
+    <path id="Arrow 1" d="M104.008 20.0938C104.398 19.7033 104.398 19.0701 104.008 18.6796L97.6439 12.3157C97.2534 11.9251 96.6202 11.9251 96.2297 12.3157C95.8392 12.7062 95.8392 13.3393 96.2297 13.7299L101.887 19.3867L96.2297 25.0436C95.8392 25.4341 95.8392 26.0673 96.2297 26.4578C96.6202 26.8483 97.2534 26.8483 97.6439 26.4578L104.008 20.0938ZM0 20.3867H103.301V18.3867H0V20.3867Z" fill="#092445"/>
+    <circle id="Ellipse 148" cx="96.1367" cy="19.3867" r="18.8867" stroke="#EF9B24"/>
+    </g>
+    </g>
+    </g>
+    </g>
+    </g>
+    <defs>
+    <clipPath id="clip0_102_45">
+    <rect width="1920" height="7723" fill="white" transform="translate(-1677 -896)"/>
+    </clipPath>
+    </defs>
+    </svg>
+
+    
+    
+    
+    </button>
+    </div>
+                <div class="slider-view progress-bar">
+        <div class="progress"></div>
+    </div> 
+    </div>
+                {{/if}}
+                
+                <!-- Progress Bar -->
+   
+                </section>
+
+        <section class="productView-details product-data">
+            <div class="productView-product">
+       {{#each product.custom_fields}}
+    {{#if name '===' 'top-sub-heading'}}
+            <p class="top-sub-heading">{{{value}}}</p>
+    {{/if}}
+{{/each}}
+                <h1 class="productView-title">
+                    {{product.title}} 
+                    {{#each product.custom_fields}}
+                        {{#if name '===' 'pre-order'}}
+                            <span class="pre-order">(<span>{{{value}}}</span>)</span>
+                        {{/if}}
+                    {{/each}}
+                </h1>
+                {{#if product.brand}}
+                <h2 class="productView-brand">
+                    <a href="{{product.brand.url}}"><span>{{product.brand.name}}</span></a>
+                </h2>
+                {{/if}}
+
+                {{{region name="product_below_price"}}}
+                <div class="productView-rating">
+                    {{#if settings.show_product_rating}}
+                    {{> components/products/ratings rating=product.rating}}
+                    {{#if product.num_reviews '>' 0}}
+                    <a href="{{product.url}}{{#if is_ajax}}#product-reviews{{/if}}" id="productReview_link">
+                        {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                    </a>
+                    {{else}}
+                    <span>{{lang 'products.reviews.link_to_review' total=product.num_reviews}}</span>
+                    {{/if}}
+                    {{/if}}
+                    {{#if settings.show_product_reviews}}
+                    <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                        class="productView-reviewLink productView-reviewLink--new" {{#unless
+                        is_ajax}}data-reveal-id="modal-review-form" {{/unless}} role="button">
+                        {{lang 'products.reviews.new'}}
+                    </a>
+                    {{#unless is_ajax}}
+                    {{> components/products/modals/writeReview}}
+                    {{/unless}}
+                    {{/if}}
+                </div>
+                {{product.detail_messages}}
+                <dl class="productView-info hhh">
+                   
+                    {{#all product.weight theme_settings.show_product_weight}}
+                    <dt class="productView-info-name">{{lang 'products.weight'}}</dt>
+                    <dd class="productView-info-value" data-product-weight>{{product.weight}}</dd>
+                    {{/all}}
+                    {{#all product.width product.height product.depth theme_settings.show_product_dimensions}}
+                    <dt class="productView-info-name">{{lang 'products.width'}}</dt>
+                    <dd class="productView-info-value" data-product-width>
+                        {{product.width}}
+                        {{#if settings.measurements.length '==' 'Centimeters'}}
+                        ({{lang 'products.measurement.metric'}})
+                        {{else}}
+                        ({{lang 'products.measurement.imperial'}})
+                        {{/if}}
+                    </dd>
+                    <dt class="productView-info-name">{{lang 'products.height'}}</dt>
+                    <dd class="productView-info-value" data-product-height>
+                        {{product.height}}
+                        {{#if settings.measurements.length '==' 'Centimeters'}}
+                        ({{lang 'products.measurement.metric'}})
+                        {{else}}
+                        ({{lang 'products.measurement.imperial'}})
+                        {{/if}}
+                    </dd>
+                    <dt class="productView-info-name">{{lang 'products.depth'}}</dt>
+                    <dd class="productView-info-value" data-product-depth>
+                        {{product.depth}}
+                        {{#if settings.measurements.length '==' 'Centimeters'}}
+                        ({{lang 'products.measurement.metric'}})
+                        {{else}}
+                        ({{lang 'products.measurement.imperial'}})
+                        {{/if}}
+                    </dd>
+                    {{/all}}
+                    {{#if product.min_purchase_quantity}}
+                    <dt class="productView-info-name">{{lang 'products.min_purchase_quantity'}}</dt>
+                    <dd class="productView-info-value">{{lang 'products.purchase_units'
+                        quantity=product.min_purchase_quantity}}</dd>
+                    {{/if}}
+                    {{#if product.max_purchase_quantity}}
+                    <dt class="productView-info-name">{{lang 'products.max_purchase_quantity'}}</dt>
+                    <dd class="productView-info-value">{{lang 'products.purchase_units'
+                        quantity=product.max_purchase_quantity}}</dd>
+                    {{/if}}
+                    {{#if product.gift_wrapping_available}}
+                    <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
+                    <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
+                    {{/if}}
+                   
+
+                    {{#if theme_settings.show_custom_fields_tabs '!==' true}}
+                    {{> components/products/custom-fields }}
+                    {{/if}}
+                </dl>
+
+                {{#if product.call_for_price}}
+                <p class="productView-price">
+                    <span>{{product.call_for_price}}</span>
+                </p>
+                {{/if}}
+                <div class="productView-price">
+                    {{#or customer (unless settings.hide_price_from_guests)}}
+                    {{> components/products/price price=product.price}}
+                    {{else}}
+                    {{> components/common/login-for-pricing}}
+                    {{/or}}
+                </div>
+            </div>
+        </section>
+
+        <section class="productView-details product-options">
+            <div class="productView-options">
+                {{#if product.release_date }}
+                <p>{{product.release_date}}</p>
+                {{/if}}
+                <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                    data-cart-item-add>
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" value="{{product.id}}" />
+                    {{#if product.cart_order_source}}
+                    <input type="hidden" name="cart_order_source" value="{{product.cart_order_source}}" />
+                    {{/if}}
+                    <div data-product-option-change style="display:none;">
+                        {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
+                        {{#each product.options}}
+                        {{{dynamicComponent 'components/products/options'}}}
+                        {{/each}}
+                    </div>
+                    <div
+                        class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+                        <label class="form-label form-label--alternate">
+                            {{lang 'products.current_stock'}}
+                            <span data-product-stock>{{product.stock_level}}</span>
+                        </label>
+                    </div>
+                    {{> components/products/add-to-cart with_wallet_buttons=true}}
+                    {{#if product.out_of_stock}}
+                    {{#if product.out_of_stock_message}}
+                    {{> components/common/alert/alert-error product.out_of_stock_message}}
+                    {{else}}
+                    {{> components/common/alert/alert-error (lang 'products.sold_out')}}
+                    {{/if}}
+                    {{/if}}
+                </form>
+                {{#if settings.show_wishlist}}
+                {{> components/common/wishlist-dropdown}}
+                {{/if}}
+            </div>
+            {{> components/common/share url=product.url}}
+        </section>
+
+    </div>
+</div>
+
+<div class="class-for-rotating-logo">
+    {{{region name="product_details_below--global" }}}
+
+    <!--circular-logo-->
+    <div class="circular-logo">
+        <div class="img-1">
+            <img src="https://cdn11.bigcommerce.com/s-429qx0qsg4/images/stencil/original/image-manager/rotating-img.png?t=1713858325"
+                alt="">
+        </div>
+        <div class="img-2">
+            <img src="https://cdn11.bigcommerce.com/s-429qx0qsg4/images/stencil/original/image-manager/static-img-2.png?t=1713858324"
+                alt="">
+        </div>
+    </div>
+    <!--END circular-logo  -->
+</div>
+<div class="desci-wrap {{product.title}}">
+    <div class="container">
+        <article class="productView-description">
+            <!--product discriptions remove here which are comentecd-->
+            {{> components/products/description}}
+        </article>
+    </div>
+</div>
+
+
+<div id="previewModal" class="modal modal--large" data-reveal>
+    {{> components/common/modal/modal-close-btn }}
+    <div class="modal-content"></div>
+    <div class="loadingOverlay"></div>
+</div>
+
+    
+    <style>
+    
+    .productView-img-container.slick-show-this img {
+    position: unset;
+}
+.productView-img-container.slick-show-this::after {
+    padding: unset;
+}
+
+
+.progress-bar {
+  width: 100%; 
+  height: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px; 
+  margin-top: 10px;
+}
+
+
+.progress {
+  height: 100%;
+  background-color: #007bff;
+  border-radius: 5px; 
+  transition: width 0.3s ease-in-out; 
+}
+.slider-view.progress-bar{
+    height:3px !important;
+}
+    </style>
+<!--links remove from here which are comented-->
+    <script>
+          $(document).ready(function(){
+     
+        var $carousel = $('.slick-show-this').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: false, // Set autoplay to false
+            prevArrow: $('.prev-btn'), // Use custom previous button
+            nextArrow: $('.next-btn'),
+            centerMode: true,
+            centerPadding: '100px'
+        });
+
+        // Update progress bar on slide change
+        $carousel.on('afterChange', function(event, slick, currentSlide){
+            updateProgressBar(currentSlide);
+        });
+
+        // Initial progress bar update
+        updateProgressBar(0); // Start with the first slide
+
+        function updateProgressBar(currentSlideIndex) {
+            var totalSlides = $carousel.slick('getSlick').slideCount;
+            var percent = ((currentSlideIndex + 1) / totalSlides) * 100;
+            $('.progress').css('width', percent + '%');
+        }
+        
+  const nextBtn = document.querySelector('.next-btn.slick-arrow');
+    const prevBtn = document.querySelector('.prev-btn.slick-arrow');
+
+    nextBtn.addEventListener('click', function() {
+        nextBtn.classList.add('active');
+        prevBtn.classList.remove('active'); // Remove 'active' class from the other button
+    });
+
+    prevBtn.addEventListener('click', function() {
+        prevBtn.classList.add('active');
+        nextBtn.classList.remove('active'); // Remove 'active' class from the other button
+    });
+    });
+    
+    
+        </script>
